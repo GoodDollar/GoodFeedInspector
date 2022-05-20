@@ -1,0 +1,9 @@
+.inspector,
+.inspector .tabs__content,
+.inspector .tab-content {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  flex-direction: column;
+}

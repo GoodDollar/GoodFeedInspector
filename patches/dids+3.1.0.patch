@@ -1,0 +1,15 @@
+diff --git a/node_modules/dids/package.json b/node_modules/dids/package.json
+index 506650e..90141d4 100644
+--- a/node_modules/dids/package.json
++++ b/node_modules/dids/package.json
+@@ -60,9 +62,7 @@
+     "webpack-cli": "^4.9.2"
+   },
+   "exports": {
+-    ".": {
+-      "import": "./lib/index.js"
+-    }
++    ".": "./lib/index.js"
+   },
+   "files": [
+     "lib/*"

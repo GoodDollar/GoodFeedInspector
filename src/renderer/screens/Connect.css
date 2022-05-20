@@ -1,0 +1,10 @@
+.connect-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.connect {
+  flex: .35;
+}

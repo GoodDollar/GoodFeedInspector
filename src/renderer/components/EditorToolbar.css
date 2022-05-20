@@ -1,0 +1,13 @@
+.editor-toolbar .btn-mini {
+  padding: 2px 6px;
+}
+
+.editor-toolbar .toolbar-actions {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.editor-toolbar .form-control {
+  flex: .4
+}
