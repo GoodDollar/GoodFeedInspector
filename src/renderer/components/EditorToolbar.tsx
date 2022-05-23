@@ -1,11 +1,13 @@
 import { find, reverse } from "lodash"
-import { useCallback, useMemo, useState } from "react"
+import { useCallback, useContext, useMemo, useState } from "react"
 import { ToolbarHeader, ToolbarActions, Input, ButtonGroup, Button, Select } from 'react-photon'
+import { CeramicContext } from "../context/CeramicContext"
 
 import './EditorToolbar.css'
 
 const EditorToolbar = ({ load = false, commits = false, onLoad, onStore }) => {
   const [inputValue, setInputValue] = useState('')
+  const { authenticated } = useContext(CeramicContext)
 
   const options = useMemo(() => {
     if (!commits) {
@@ -52,10 +54,12 @@ const EditorToolbar = ({ load = false, commits = false, onLoad, onStore }) => {
             onInput={handleCommitSelect}
           />
         )}
-        <ButtonGroup>
-          {load && <Button onClick={handleLoad}>Load</Button>}
-          <Button onClick={onStore}>Save</Button>
-        </ButtonGroup>
+        {(load || authenticated) && (
+          <ButtonGroup>
+            {load && <Button onClick={handleLoad}>Load</Button>}
+            {authenticated && <Button onClick={onStore}>Save</Button>}
+          </ButtonGroup>
+        )}
       </ToolbarActions>
     </ToolbarHeader>
   )
