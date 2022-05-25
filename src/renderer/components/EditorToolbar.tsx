@@ -1,4 +1,4 @@
-import { find, reverse } from "lodash"
+import { find, noop, reverse } from "lodash"
 import { useCallback, useContext, useMemo, useState } from "react"
 import { ToolbarHeader, ToolbarActions, Input, ButtonGroup, Button, Select } from 'react-photon'
 import { CeramicContext } from "../context/CeramicContext"
@@ -7,6 +7,7 @@ import './EditorToolbar.css'
 
 const EditorToolbar = ({ load = false, commits = false, onLoad, onStore }) => {
   const [inputValue, setInputValue] = useState('')
+  const [storing, setStoring] = useState(false)
   const { authenticated } = useContext(CeramicContext)
 
   const options = useMemo(() => {
@@ -36,6 +37,11 @@ const EditorToolbar = ({ load = false, commits = false, onLoad, onStore }) => {
     onLoad(inputValue)
   }, [onLoad, inputValue])
 
+  const handleStore = useCallback(async () => {
+    setStoring(true)
+    await onStore().finally(() => setStoring(false))
+  }, [onStore, setStoring])
+
   return (
     <ToolbarHeader className="editor-toolbar">
       <ToolbarActions>
@@ -57,7 +63,14 @@ const EditorToolbar = ({ load = false, commits = false, onLoad, onStore }) => {
         {(load || authenticated) && (
           <ButtonGroup>
             {load && <Button onClick={handleLoad}>Load</Button>}
-            {authenticated && <Button onClick={onStore}>Save</Button>}
+            {authenticated && (
+              <Button
+                type="button"
+                onClick={storing ? noop : handleStore}
+              >
+                {storing ? 'Saving...' : 'Save'}
+              </Button>
+            )}
           </ButtonGroup>
         )}
       </ToolbarActions>

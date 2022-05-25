@@ -20,7 +20,7 @@ const DocumentEditor = ({ id, showCommits = false }) => {
     setContent(value)
   }, [setContent])
 
-  const handleStore = useCallback(() => {
+  const handleStore = useCallback(async () => {
     let updated
 
     try {
@@ -33,7 +33,7 @@ const DocumentEditor = ({ id, showCommits = false }) => {
       return
     }
 
-    Post.store(document, updated)
+    await Post.store(document, updated)
   }, [document, content, Post])
 
   useEffect(() => {

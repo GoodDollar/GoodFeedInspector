@@ -35,7 +35,9 @@ const Inspector = () => {
         <TabItem title="Changelog">
           <DocumentEditor id={indexes.changeLogId} showCommits />
         </TabItem>,
-      ] : []}
+      ] : authenticated ? (
+        <TabItem title="Loading indexes..." />
+      ) : []}
       <TabItem title="Document editor">
         <DocumentEditor />
       </TabItem>

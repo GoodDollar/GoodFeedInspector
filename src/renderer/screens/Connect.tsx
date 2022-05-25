@@ -6,8 +6,9 @@ import { CeramicContext } from '../context/CeramicContext'
 import './Connect.css'
 
 const nodes = [
-  { value: 'https://ceramic.gooddollar.org', label: 'GoodDollar Ceramic [mainnet]' },
-  { value: 'https://ceramic-clay.3boxlabs.com', label: 'JS Ceramic Clay [testnet]' },
+  { value: 'http://ceramic.gooddollar.org:7007', label: 'GoodDollar Ceramic@http [mainnet]' },
+  { value: 'https://ceramic.gooddollar.org', label: 'GoodDollar Ceramic@https [mainnet]' },
+  { value: 'https://ceramic-clay.3boxlabs.com', label: 'JS Ceramic Clay@https [testnet]' },
 ]
 
 const Connect = () => {
